@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Testing anchors.</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel='stylesheet prefetch' href='https://code.getmdl.io/1.2.1/material.teal-pink.min.css'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src='../../anchor.js'></script>
+</head>
+
+<body>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+            <h1>Hey this is an h1</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et sollicitudin ipsum. Sed gravida, urna ac sagittis commodo, arcu diam pulvinar orci, sit amet venenatis sapien neque non tortor. Ut molestie, dolor eu blandit venenatis, dolor velit volutpat nibh, vitae fringilla nisl mauris eget dui. Vivamus eget leo in purus elementum venenatis. Donec placerat sed odio id efficitur. In maximus lorem molestie elit efficitur, eu molestie libero molestie. Sed non nulla et odio rutrum sodales. Donec a magna ut leo feugiat tincidunt. Pellentesque efficitur rutrum pellentesque.</p>
+            <p>Phasellus purus arcu, facilisis in ante at, iaculis aliquam felis. Mauris eu interdum nunc, non tempor libero. Donec at ipsum ex. Curabitur a tincidunt ligula, id eleifend mauris. Etiam odio metus, ultricies ac eros ut, sollicitudin rhoncus mauris. Fusce egestas magna egestas nunc facilisis tempus. Vivamus tempus rutrum porta. Vivamus sit amet mi justo. Ut quis lorem eget arcu vulputate egestas. Maecenas mollis sem quis est consectetur venenatis.</p>
+        </div>
+    </div>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--6 col">
+            <h2>And here's an h2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et sollicitudin ipsum. Sed gravida, urna ac sagittis commodo, arcu diam pulvinar orci, sit amet venenatis sapien neque non tortor. Ut molestie, dolor eu blandit venenatis, dolor velit volutpat nibh, vitae fringilla nisl mauris eget dui. Vivamus eget leo in purus elementum venenatis. Donec placerat sed odio id efficitur. In maximus lorem molestie elit efficitur, eu molestie libero molestie. Sed non nulla et odio rutrum sodales. Donec a magna ut leo feugiat tincidunt. Pellentesque efficitur rutrum pellentesque.</p>
+            <p>Phasellus purus arcu, facilisis in ante at, iaculis aliquam felis. Mauris eu interdum nunc, non tempor libero. Donec at ipsum ex. Curabitur a tincidunt ligula, id eleifend mauris. Etiam odio metus, ultricies ac eros ut, sollicitudin rhoncus mauris. Fusce egestas magna egestas nunc facilisis tempus. Vivamus tempus rutrum porta. Vivamus sit amet mi justo. Ut quis lorem eget arcu vulputate egestas. Maecenas mollis sem quis est consectetur venenatis.</p>
+            <h2 id="h2-has-id">This h2 has an id</h2>
+            <p>But it's not in the <code>&lt;a class="anchor" id=""&gt;&lt;&#47;a&gt;</code> element like it should be!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et sollicitudin ipsum. Sed gravida, urna ac sagittis commodo, arcu diam pulvinar orci, sit amet venenatis sapien neque non tortor. Ut molestie, dolor eu blandit venenatis, dolor velit volutpat nibh, vitae fringilla nisl mauris eget dui.</p>
+            <h3>I guess we can throw in an h3</h3>
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col">
+          <h2><a id="h2-a-has-element"></a>This h2 if formatted correctly</h2>
+          <p>Immediately after the <code>&lt;h2&gt;</code> tag there's an empty anchor—<code>a</code>—element that looks like this: <code>&lt;a class="anchor" id="h2-a-has-element"&gt;&lt;&#47;a&gt;</code>.</p>
+          <p>So what do we need to change in the anchor.js?</p>
+          <ul>
+            <li>Stop adding the anchor id to the heading elements.</li>
+            <li>Instead, insert <code>&lt;a class="anchor" id=""&gt;&lt;&#47;a&gt;</code> immediately after the opening <code>&lt;h2&gt;</code> tag and add the id there.</li>
+            <li>Stop checking for existing ids in the heading elements.</li>
+            <li>Instead, start checking if the heading element akreadt contains <code>&lt;a class="anchor" id=""&gt;&lt;&#47;a&gt;</code> with an id.</li>
+          </ul>
+          <p>When a heading element already contains an anchor element, it looks like this before anchor.js runs:</p>
+          <pre>&lt;h2&gt;&lt;a class=&quot;anchor&quot; id=&quot;sample-heading&quot;&gt;&lt;/a&gt;Sample heading&lt;/h2&gt;</pre>
+          <p>When the heading element doesn't contain an anchor element, it looks like this before anchor.js runs:</p>
+          <pre>&lt;h2&gt;Sample heading&lt;/h2&gt;</pre>
+          <p>After anchor.js runs in the browser, the heading element will look like this, regardless if it already had an anchor element or not:</p>
+          <pre>&lt;h2&gt;
+   &lt;a class=&quot;anchor&quot; id=&quot;sample-heading&quot;&gt;&lt;/a&gt;
+   Sample heading
+   &lt;a class=&quot;anchorjs-link &quot; href=&quot;#sample-heading&quot; aria-label=&quot;Anchor link for: sample-heading&quot; data-anchorjs-icon=&quot;&#xe9cb;&quot; style=&quot;font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 1em; line-height: 1; font-family: anchorjs-icons; padding-left: 0.375em;&quot;&gt;
+   &lt;/a&gt;
+&lt;/h2&gt;
+          </pre>
+          <p>Note: we should ensure that anchor.js will still check if an anchor id already exists, but it needs to check if there's an anchor element with an id, not if the header element already contains an id.</p>
+        </div>
+    </div>
+    </div>
+    <script>anchors.add();</script>
+    <script src='https://code.getmdl.io/1.3.0/material.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+</body>
+
+</html>

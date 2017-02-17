@@ -1,0 +1,18 @@
+body {
+  margin-left: 5em;
+  background-color: #fbfbfb;
+}
+
+code {
+  background-color: #f7f7f9;
+  padding: 2px;
+  color: #00ab8e;
+  font-size: 90%;
+}
+
+pre {
+  background-color: #f7f7f7;
+  padding: 5px;
+  color: #00ab8e;
+  overflow-x: auto;
+}
